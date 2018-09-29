@@ -3,7 +3,7 @@
 - include_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
-# we accept PRs!
+# does this solve a problem for you? PR's welcome!
 #- import_tasks: rhel.yml
 #  when: ansible_distribution == 'RedHat'
 
@@ -25,8 +25,8 @@
   when: pyzyre_debug is undefined or pyzyre_debug == False
 
 # in debugmode- install from src
-#- include_tasks: sdist.yml
-#  when: pyzyre_debug is defined and pyzyre_debug != ""
+- include_tasks: sdist.yml
+  when: pyzyre_debug is defined and pyzyre_debug != ""
 
 - name: test
   command: zyre-broker -h

@@ -14,7 +14,9 @@ echo 'installing ansible...'
 pip install 'cryptography>=1.5' 'ansible>=2.6,<2.7'
 
 cd /vagrant
-ansible-playbook -i "localhost," -c local test.yml -vv -e pyzyre_version=0.0a27
+ansible-playbook -i "localhost," -c local test.yml -vv
+
+# ansible-playbook -i 'localhost,' -c local test.yml -vv -e pyzyre_debug=1
 
 SCRIPT
 
