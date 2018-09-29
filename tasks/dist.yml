@@ -1,0 +1,18 @@
+---
+
+- name: install pyzyre {{ pyzyre_version }}
+  pip: name="pyzyre=={{ pyzyre_version }}"
+  when: pyzyre_version is defined and pyzyre_version != ""
+
+- name: install pyzyre
+  pip: name="pyzyre"
+  when: pyzyre_version is undefined or pyzyre_version == ""
+
+- name: uninstall pyzmq
+  command: pip uninstall -y pyzmq
+  become: True
+
+# TODO- WHY???
+- name: re-install pyzmq
+  pip: name="pyzmq>={{ pyzmq_version }}" extra_args='--no-binary pyzmq'
+

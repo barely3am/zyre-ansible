@@ -1,0 +1,19 @@
+sudo: required
+dist: trusty
+language: python
+cache: apt pip
+
+python:
+  - 2.7
+  - 3.6
+
+before_install:
+  - pip install ansible
+
+script:
+  - ansible-playbook --check test.yml
+
+notifications:
+  email:
+    on_success: never
+
