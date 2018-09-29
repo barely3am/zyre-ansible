@@ -3,7 +3,7 @@ galaxy_info:
   author: Wes Young
   description: ZeroMQ Zyre Role (includes pyzyre)
   company: Barely3am
-  name: zyre
+  role_name: zyre
 
   issue_tracker_url: https://github.com/barely3am/zyre-ansible/issues
   license: MPL2
