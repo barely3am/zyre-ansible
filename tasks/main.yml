@@ -1,0 +1,29 @@
+---
+
+- include_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+# we accept PRs!
+#- import_tasks: rhel.yml
+#  when: ansible_distribution == 'RedHat'
+
+#- import_tasks: rhel.yml
+#  when: ansible_distribution == 'CentOS'
+
+- name: install requirements
+  pip: name="cython>=0.20"
+
+- name: install pyzmq
+  pip: name=pyzmq extra_args='--no-binary :all:'
+
+# production mode- install from pip
+- name: install pyzyre
+  pip: name="pyzyre=={{ pyzyre_version }}"
+  when: pyzyre_debug is undefined or pyzyre_debug == False
+
+# in debugmode- install from src
+- include_tasks: sdist.yml
+  when: pyzyre_debug is defined and pyzyre_debug == True
+
+- name: test
+  command: zyre-broker -h
